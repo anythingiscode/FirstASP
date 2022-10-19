@@ -1,0 +1,33 @@
+﻿@model List<Beer>       //Le mandamos una lista de tipo Beer
+
+
+    <h1>CERVEZAS</h1
+
+    <p>           @* Especifica un párrafo  --> lo usamos para poner un botón*@
+         <a asp-action="Create">Crear</a>        @*//	Principalmente utilizado como hipervínculo -- "asp-" : son atrubutos propios de ASP.Net*@
+    </p>
+  
+
+    <table class=" table">
+    <thead>
+        <tr>    @* <tr> fila de celdas en una tabla*@
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @*Para hacer el recorrido por toda la lista de cervezas    // min 26 *@     
+        @foreach (var beer in Model)
+        {
+                <tr>
+                    <td>@Html.DisplayFor(m=>beer.Name)</td>
+                    <td>@Html.DisplayFor(m=>beer.Brand.Name)</td>      @* //Podemos llamar a Brand.Name porque pusimos "Include" en el controlador 
+                                                                            "var beers = _context.Beers.Include(b => b.Brand);"*@
+                </tr> 
+        }
+
+    </tbody>
+
+
+</table>

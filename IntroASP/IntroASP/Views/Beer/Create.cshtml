@@ -1,0 +1,38 @@
+﻿@using IntroASP.Models.ViewModels
+@model BeerViewModel
+
+<h1> Crear Cerveza</h1>
+@*Bootstrap se ha incuido directamente. Está en wwwroot/lib/bootstrap/css/bootstrap.css*@
+<hr />              @* <hr /> : Define un cambio temático en el contenido*@
+
+<div class="row">               @* Define una sección en un documento. *@	
+    <div class="col-md-4">      @* Creamos 4 col*@
+        <form asp-action="Create">   @* Creamos formulario*@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>  @*//Tag que va mostrar info cuando tenga error- La class es de bootstrap*@
+            @*Configuramos el primer campo "Nombre"*@
+            <div class="form-grup">         @*  Class de bootstrap*@
+                <label asp-for="Name" class="control-label"></label>    @* Nombre , estilo*@
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            @*Configuramos el 2º campo "Marca"*@
+            <div class="form-grup">         @*  Class de bootstrap*@
+                <label asp-for="BrandId" class="control-label"></label>    @* Nombre , estilo con una class de bootstrap*@
+                <select asp-for="BrandId" class=" form-control" asp-items="ViewBag.Brands"></select>  @* Relacionamos con : ViewBag.Nombre que le pusimos al ViewData:"ViewData["Brands"]"*@
+                <span asp-validation-for="BrandId" class="text-danger"></span>
+            </div>
+            <br />
+            @* Añadimos un simple botón*@
+            <div class=" form-group">
+                <input type="submit" value="Crear" class="btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{      @* // Min 48'*@
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");  // Validacion parcial (solo pra enviar msg en el front-end)
+    }
+
+}

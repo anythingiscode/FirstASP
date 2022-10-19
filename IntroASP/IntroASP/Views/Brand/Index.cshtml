@@ -1,0 +1,38 @@
+﻿
+@*Por defecto se usa el Layout de C# de la carpeta Share. 
+    Si se quiere cambiar el layout por otro :
+
+    @{
+        Layout = "Mi_Layout" o null (para que aparezca en blanco)
+    }
+*@
+
+@*Vamos ha hacer que la vista reciba la LISTA que envia el controlador "BrandController" con "model" *@
+
+@*@model List<IntroASP.Models.Brand>  // Esta es la forma larga que indica todo el camino a la lista. Se puede simplificar:*@
+@model List<Brand>
+
+    <h1>MARCAS</h1>
+
+<table class=" table">
+    <thead>
+        <tr>    @* <tr> fila de celdas en una tabla*@
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*Para hacer el recorrido por toda la lista de marcas    // min 26 *@     
+        @foreach(var brand in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m=>brand.Name)</td>
+            </tr> 
+        }
+
+    </tbody>
+
+
+</table>
+
+
+
