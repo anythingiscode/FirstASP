@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ApiRestCore.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ApiRestCoreContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ApiRestCoreContext") ?? throw new InvalidOperationException("Connection string 'ApiRestCoreContext' not found.")));
 
 // Add services to the container.
 
